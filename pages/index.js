@@ -1,19 +1,20 @@
-import Image from "next/image"
-import cat1 from "../public/cool.jpg"
+import Hero from '@components/hero'
+import Banner from '@components/banner'
+import Card from '@components/card'
+export const revalidate = 60
 
 export default function Home() {
   return (
-    <div className='flex flex-col items-center justify-center w-full h-screen space-y-8 lg-flex-row'>
-      <div className='relative w-32 h-32 overflow-hidden rounded-full ring-2 ring-pink-300 ring-offset-4'>
-        <Image
-          style={{objectFit:"cover"}}
-          src={cat1}
-          alt='Picture of a cat'
-          fill='true'
-          priority
-        />
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <Banner />
+      <Hero />
+      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <Card 
+            key="{item.id}"
+            title="{item.title}"
+            link="{item.link}"
+            text="{item.content}" />
       </div>
-      <h1 className='text-3xl'>Tailwind Cat App</h1>
-    </div>
+    </main>
   )
 }
