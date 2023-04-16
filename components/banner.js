@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Banner() {
     return (
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -5,7 +7,17 @@ export default function Banner() {
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://vercel.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >Login 
+            <Image
+              src="/vercel.svg"
+              alt="Vercel Logo"
+              className="dark:invert"
+              width={100}
+              height={24}
+              priority
+            />
           </a>
         </div>
       </div>
