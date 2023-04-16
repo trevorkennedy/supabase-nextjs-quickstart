@@ -1,40 +1,19 @@
-import Head from 'next/head'
-import Hero from '@components/hero'
-import Banner from '@components/banner'
-import Card from '@components/card'
-import { supabase } from 'lib/supabase'
+import Image from "next/image"
+import cat1 from "../public/cool.jpg"
 
-export const revalidate = 60
-
-export async function getServerSideProps() {
-  let { data } = await supabase.from('posts').select()
-  return {
-    props: {
-      posts: data
-    },
-  }
-}
-
-export default function Home({ posts }) {
+export default function Home() {
   return (
-    <div className="container">
-      <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Banner />
-      <Hero />
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-      {posts?.map((item) => (
-          <Card 
-            key={item.id}
-            title={item.title}
-            link={item.link}
-            text={item.content} />
-        ))}
+    <div className='flex flex-col items-center justify-center w-full h-screen space-y-8 lg-flex-row'>
+      <div className='relative w-32 h-32 overflow-hidden rounded-full ring-2 ring-pink-300 ring-offset-4'>
+        <Image
+          style={{objectFit:"cover"}}
+          src={cat1}
+          alt='Picture of a cat'
+          fill='true'
+          priority
+        />
       </div>
-    </main>
+      <h1 className='text-3xl'>Tailwind Cat App</h1>
     </div>
   )
 }
