@@ -24,7 +24,7 @@ export default function Home({posts}) {
           <Card 
             key={item.id}
             title={item.title}
-            link={item.link}
+            link={`/post/${item.id}`}
             text={item.content} />
         ))}
       </div>
