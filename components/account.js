@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Avatar from './avatar'
 
@@ -9,6 +10,11 @@ export default function Account({ session }) {
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/dashboard');
+  };
 
   useEffect(() => {
     getProfile()
@@ -79,7 +85,6 @@ export default function Account({ session }) {
         <p>{session.user.email}</p>
       </div>
       <div>
-        
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => updateProfile({ username, website, avatar_url })}
@@ -87,10 +92,13 @@ export default function Account({ session }) {
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>
+        <button 
+            onClick={handleClick}
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Dashboard
+        </button>
       </div>
-
       <div>
-
         <button 
             onClick={() => supabase.auth.signOut()}
             class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
