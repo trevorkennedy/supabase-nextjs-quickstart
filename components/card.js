@@ -1,5 +1,3 @@
-
-
 export default function Card({ title, link, text }) {
     return (
         <a
